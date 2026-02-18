@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand - Northern Clean Energy green */
+  --brand-primary: #1a7f37;
+  --brand-primary-hover: #1e9b42;
+  --brand-primary-glow: rgba(26, 127, 55, 0.4);
+  --brand-primary-light: rgba(26, 127, 55, 0.12);
+  /* Dark electric theme */
+  --bg-dark: #0a0e12;
+  --bg-dark-elevated: #111820;
+  --bg-dark-card: #141c26;
+  --bg-dark-card-hover: #1a2432;
+  --charcoal: #e2e8f0;
+  --charcoal-muted: #94a3b8;
+  --off-white: #f8fafc;
+  --border-subtle: rgba(26, 127, 55, 0.2);
+}
+
+@theme inline {
+  --color-background: var(--bg-dark);
+  --color-foreground: var(--charcoal);
+  --color-brand: var(--brand-primary);
+  --color-brand-hover: var(--brand-primary-hover);
+  --color-brand-light: var(--brand-primary-light);
+  --color-charcoal: var(--charcoal);
+  --font-sans: var(--font-archivo);
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--charcoal);
+  font-family: var(--font-archivo), system-ui, sans-serif;
+}
+
+/* Capitalize all titles */
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+}
+
+/* Electric grid background pattern */
+.bg-electric-grid {
+  background-image:
+    linear-gradient(rgba(26, 127, 55, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 127, 55, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Subtle glow on focus/hover */
+.glow-brand {
+  box-shadow: 0 0 20px var(--brand-primary-glow);
+}
+
+/* Gradient border ring only - fully transparent center (for Call Now button) */
+.btn-gradient-ring {
+  background: linear-gradient(to right, #1a7f37, #34d399, #6ee7b7);
+  /* Rectangle mask: full box minus inset = 4px border ring */
+  -webkit-mask-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
+  -webkit-mask-size: 100% 100%, calc(100% - 8px) calc(100% - 8px);
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-composite: xor;
+  mask-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
+  mask-size: 100% 100%, calc(100% - 8px) calc(100% - 8px);
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-composite: exclude;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Section wrapper - consistent spacing */
+.section-padding {
+  @apply py-16 md:py-24;
+}
+
+.container-narrow {
+  @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+}
